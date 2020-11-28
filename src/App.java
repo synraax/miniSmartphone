@@ -10,9 +10,9 @@ public class App {
             { 005, 000, 100000 } }; // no. rek, pin, saldo
 
     // keperluan ATM
-    static int l = 1, x = 0, n = 0, rek;
+    static int l, x = 0, n = 0, rek;
     static double pin, pinFix, login, uang;
-    static boolean check1 = false, check2 = false;
+    static boolean check1, check2;
 
     public static void main(String[] args) {
         Login();
@@ -99,7 +99,10 @@ public class App {
 
     static void loginATM() {
         System.out.println("[ ATM Pendragon ]");
+        l = 1;
         do {
+            check1 = false;
+            check2 = false;
             login = InputDouble("No rek: ");
             pin = InputDouble("Pin: ");
 
@@ -230,23 +233,21 @@ public class App {
 
                 ATMchecker();
 
-                do {
                     int pinB = InputInt("Masukkan pin baru anda: ");
-                    String jwb = InputString("Yakin ingin ingin mengubah pin lama anda menjadi " + pinB + " (Y/N) ?");
+                    String jwb = InputString("Yakin ingin ingin mengubah pin lama anda menjadi " + pinB + " (Y/N) ? ");
 
                     if (jwb.equalsIgnoreCase("y")) {
                         bank[x][1] = pinB;
                         pinFix = pinB;
                         System.out.println("Selamat pin anda sudah berubah!");
-                        break;
                     } else {
                         menuATM();
                         chooseMenuATM();
                     }
-                } while (true);
+                break;
             default:
                 System.out.println("Menu ATM tidak ditemukan!");
-        }
+        } 
     }
 
     static void ATMchecker() {
